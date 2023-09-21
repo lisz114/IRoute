@@ -19,11 +19,11 @@ public class NovoUsuario {
 		this.senha = senha;
 	}
 	
-	private Integer numeroCartao;
-	public Integer getNumeroCartao() {
+	private Float numeroCartao;
+	public Float getNumeroCartao() {
 		return numeroCartao;
 	}
-	public void setNumeroCartao(Integer numeroCartao) {
+	public void setNumeroCartao(Float numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 }
