@@ -6,17 +6,20 @@ import java.util.Scanner;
 public class IRoute {
 
 	public static void main(String[] args) {
-
+		ArrayList<NovoUsuario> novoUsuarios = new ArrayList<>();
 		Scanner leitura = new Scanner(System.in);
-
-		Integer opcaoSelecionada = menu();
+		
+		Integer opcaoSelecionada = Integer.MAX_VALUE;
+		
+		while(opcaoSelecionada != 0) {
+		opcaoSelecionada = menu();
 		switch (opcaoSelecionada) {
 		case 1: {
-			cadastro();
+			novoUsuarios.add(cadastro());	
 		}
 			break;
 		case 2: {
-			login();
+			login(novoUsuarios);
 		}
 			break;
 		default: {
@@ -24,19 +27,12 @@ public class IRoute {
 			main(args);
 		}
 		}
-		Integer opcaoSelecionada2 = menu2();
-		switch(opcaoSelecionada) {
-		case 1:{
-			alterarSenha();
+		//Integer opcaoSelecionada2 = menu2();
+		//switch(opcaoSelecionada) {
+		//case 1:{
+		//	alterarSenha();}
+		//}
 		}
-		}
-	}
-	
-	private static void alterarSenha() {
-		Scanner leitura = new Scanner(System.in);
-		System.out.println("Digite sua senha atual:\n ");
-		Float senhaAlterar = Float.valueOf(leitura.nextLine());
-		if (senhaAlterar = senha)
 	}
 
 	private static Integer menu2() {
@@ -62,10 +58,9 @@ public class IRoute {
 
 	}
 
-	private static void cadastro() {
+	private static NovoUsuario cadastro() {
 		Scanner leitura = new Scanner(System.in);
-		ArrayList<NovoUsuario> NovoUsuarios = new ArrayList<>();
-
+	
 		System.out.println("Digite o número do seu Cartão: ");
 		Float cartao = Float.valueOf(leitura.nextLine());
 		System.out.println("Digite seu nome inteiro: ");
@@ -77,26 +72,27 @@ public class IRoute {
 		p.setNumeroCartao(cartao);
 		p.setNome(nome);
 		p.setSenha(senha);
-		NovoUsuarios.add(p);
-
-		leitura.close();
-
+		
+		return p;
 	}
 
-	private static void login() {
+	private static void login(ArrayList<NovoUsuario> usuarios) {
 
 		Scanner leitura = new Scanner(System.in);
-		ArrayList<NovoUsuario> NovoUsuarios = new ArrayList<>();
 		System.out.println("Digite o seu nome de usuário");
 		String nome = leitura.nextLine();
 		System.out.println("Digite a senha: ");
 		String senha = leitura.nextLine();
 
-		NovoUsuario p = new NovoUsuario();
-		p.setNome(nome);
-		p.setSenha(senha);
-		NovoUsuarios.add(p);
+		for (NovoUsuario usuario : usuarios) {
+			
+			if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
+				menu2();
+					break;
+	}	
+			System.out.println("Nome de usuário ou senha incorreta!\n Tente novamente.");
+			
+		}
 
-		leitura.close();
 	}
 }
