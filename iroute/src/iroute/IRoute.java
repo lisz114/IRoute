@@ -63,7 +63,7 @@ public class IRoute {
 	
 		System.out.println("Digite o número do seu Cartão: ");
 		Float cartao = Float.valueOf(leitura.nextLine());
-		System.out.println("Digite seu nome inteiro: ");
+		System.out.println("Crie um nome de Usuário: ");
 		String nome = leitura.nextLine();
 		System.out.println("Crie uma senha: ");
 		String senha = leitura.nextLine();
