@@ -8,43 +8,71 @@ public class IRoute {
 	public static void main(String[] args) {
 		ArrayList<NovoUsuario> novoUsuarios = new ArrayList<>();
 		Scanner leitura = new Scanner(System.in);
-		
+
 		Integer opcaoSelecionada = Integer.MAX_VALUE;
-		
-		while(opcaoSelecionada != 0) {
-		opcaoSelecionada = menu();
-		switch (opcaoSelecionada) {
-		case 1: {
-			novoUsuarios.add(cadastro());	
-		}
-			break;
-		case 2: {
-			login(novoUsuarios);
-		}
-			break;
-		default: {
-			System.out.println("Erro! Escolha uma das alternativas.");
-			main(args);
-		}
-		}
-		//Integer opcaoSelecionada2 = menu2();
-		//switch(opcaoSelecionada) {
-		//case 1:{
-		//	alterarSenha();}
-		//}
+		Integer opcaoSelecionada2 = Integer.MAX_VALUE;
+
+		while (opcaoSelecionada != 0) {
+			opcaoSelecionada = menu();
+			switch (opcaoSelecionada) {
+			case 1: {
+				novoUsuarios.add(cadastro());
+				main(args);
+			}
+				break;
+			case 2: {
+				login(novoUsuarios);
+			}
+				break;
+			default: {
+				System.out.println("Erro! Escolha uma das alternativas.");
+				main(args);
+			}
+			}
+			while (opcaoSelecionada2 != 0) {
+				opcaoSelecionada2 = menu2();
+				switch (opcaoSelecionada2) {
+				case 1: {
+					alterarSenha();
+				} break;
+				case 2: {
+					excluirConta();
+				} break;
+				case 3: {
+					exibirlinhas();
+				} break;
+				default: {
+				System.out.println("Erro! Escolha uma das alternativas.");
+				menu2();
+				}
+				}
+			}
 		}
 	}
 
-	private static Integer menu2() {
-		Scanner leitura = new Scanner(System.in);
-		
-		System.out.println("Deseja:\n 1- Alterar sua senha\n 2- Excluir sua conta\n 3- Ver as linhas de ônibus.");
-		Integer opcaoSelecionada2 = Integer.valueOf(leitura.nextLine());
-		
-		return opcaoSelecionada2;
+	private static void exibirlinhas() {
 		
 	}
-	
+
+	private static void excluirConta() {
+		
+	}
+
+	public static Integer menu2() {
+		Scanner leitura = new Scanner(System.in);
+
+		System.out.println("Deseja:\n 1- Alterar sua senha\n 2- Excluir sua conta\n 3- Ver as linhas de ônibus.");
+		Integer opcaoSelecionada = Integer.valueOf(leitura.nextLine());
+
+		return opcaoSelecionada;
+	}
+
+	private static void alterarSenha() {
+
+		Scanner leitura = new Scanner(System.in);
+
+	}
+
 	private static Integer menu() {
 		Scanner leitura = new Scanner(System.in);
 
@@ -60,7 +88,7 @@ public class IRoute {
 
 	private static NovoUsuario cadastro() {
 		Scanner leitura = new Scanner(System.in);
-	
+
 		System.out.println("Digite o número do seu Cartão: ");
 		Float cartao = Float.valueOf(leitura.nextLine());
 		System.out.println("Crie um nome de Usuário: ");
@@ -72,7 +100,7 @@ public class IRoute {
 		p.setNumeroCartao(cartao);
 		p.setNome(nome);
 		p.setSenha(senha);
-		
+
 		return p;
 	}
 
@@ -85,13 +113,16 @@ public class IRoute {
 		String senha = leitura.nextLine();
 
 		for (NovoUsuario usuario : usuarios) {
-			
+
 			if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
 				menu2();
-					break;
-	}	
+				break;
+			} else {
+				System.out.println("Login não encontrado, realize o cadastro.");
+				menu();
+			}
 			System.out.println("Nome de usuário ou senha incorreta!\n Tente novamente.");
-			
+
 		}
 
 	}
