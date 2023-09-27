@@ -1,6 +1,6 @@
 package iroute;
 
-public class NovoUsuario {
+public class Usuario {
 
 	private String nome;
 
