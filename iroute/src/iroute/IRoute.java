@@ -39,12 +39,39 @@ public class IRoute {
 		}
 	}
 
-	private static void exibirlinhas() {
-
+	private static Integer exibirlinhas() {
+		
+		Scanner leitura = new Scanner(System.in);
+		
+		System.out.println("- EXIBIR AS LINHAS PARA: -");
+		System.out.println("1 - Blumenau ");
+		System.out.println("2 - Gaspar ");
+		System.out.println("3 - Ilhota ");
+		
+		Integer opcaoSelecionada = Integer.valueOf(leitura.nextLine());
+		
+		return opcaoSelecionada;
+		
+		//Não terminado
 	}
 
 	private static void excluirConta() {
+		Scanner leitura = new Scanner(System.in);
 
+		System.out.println("Tem certeza que deseja excluir sua conta? (Sim ou Não): ");
+		String confirm = leitura.nextLine();
+		
+		if (confirm.equals("Sim")) { 
+			
+		usuarioCad.remove(usuarioLogado);
+		
+		System.out.println("Conta excluida com sucesso! ");
+		main(null);
+		}
+		
+		else if(confirm.equals("Não"));
+		menu2();
+		
 	}
 
 	public static void menu2() {
@@ -59,9 +86,10 @@ public class IRoute {
 			excluirConta();
 		} else if (opcaoSelecionada == 3) {
 			exibirlinhas();
-		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 3)
-			;
+		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 3) {
+			
 		System.out.println("Erro! Escolha uma das opções.");
+		}
 		menu2();
 	}
 
@@ -72,7 +100,7 @@ public class IRoute {
 		System.out.println("Deseja alterar sua senha? (Sim ou Não): ");
 		String confirm = leitura.nextLine();
 
-		if (confirm == "Sim") {
+		if (confirm.equals("Sim")) {
 
 			System.out.println("Digite sua senha atual: ");
 			String senhaAtual = leitura.nextLine();
@@ -88,7 +116,6 @@ public class IRoute {
 
 					System.out.println("Senha alterada com sucesso!");
 
-					System.out.println(usuario.getSenha());
 
 				} else {
 					System.out.println("Senha incorreta, tente novamente.");
@@ -96,7 +123,7 @@ public class IRoute {
 				}
 			}
 
-		} else if (confirm == "Nao") {
+		} else if (confirm.equals("Não")) {
 			menu2();
 		}
 
@@ -152,3 +179,7 @@ public class IRoute {
 		return null;
 	}
 }
+
+
+
+
