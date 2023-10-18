@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class IRoute {
 
 	private static ArrayList<Usuario> usuarioCad = new ArrayList<>();
-	@SuppressWarnings("unused")
 	private static Usuario usuarioLogado;
 
 	public static void main(String[] args) {
@@ -22,6 +21,8 @@ public class IRoute {
 				usuarioLogado = login();
 				if (usuarioLogado != null) {
 					menu2();
+				} else {
+					System.out.println("Login não encontrado, realize o cadastro ou revise seus dados.");
 				}
 				break;
 			}
@@ -31,12 +32,10 @@ public class IRoute {
 			}
 			default: {
 				System.out.println("Erro! Escolha uma das alternativas.");
-				menu();
 				break;
 			}
 			}
-
-		}
+		} 
 	}
 
 	private static Integer exibirlinhas() {
@@ -47,7 +46,7 @@ public class IRoute {
 		System.out.println("1 - Blumenau ");
 		System.out.println("2 - Gaspar ");
 		System.out.println("3 - Ilhota ");
-
+		System.out.println("4 - Voltar para o menu principal ");
 		Integer leituralinha = Integer.valueOf(leitura.nextLine());
 
 		if (leituralinha == 1) {
@@ -59,8 +58,11 @@ public class IRoute {
 		if (leituralinha == 3) {
 			ilhota(null);
 		}
+		if (leituralinha == 4) {
+			menu2();
+		}
 
-		else if (leituralinha > 3) {
+		else if (leituralinha > 4) {
 			System.out.println("Erro! Escolha uma das opções");
 			exibirlinhas();
 		}
@@ -70,11 +72,11 @@ public class IRoute {
 	private static String ilhota(String horariocomprado) {
 
 		Scanner leitura = new Scanner(System.in);
-		
-		System.out.println(" Blumenau - Ilhota: ");
-		System.out.println("1- 07:15, 2- 08:45, 3- 10:30, 4- 12:30, 5- 14:15\n ");
 
-		System.out.println("Horário escolhido:\n ");
+		System.out.println(" Blumenau - Ilhota:\n ");
+		System.out.println("1- 07:15, 2- 08:45, 3- 10:30, 4- 12:30, 5- 14:15\n ");
+		System.out.println("O valor fixo da passagem é: R$ 5,50\n");
+		System.out.println("Horário escolhido para compra:");
 		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
 
 		if (horarioescolhido == 1) {
@@ -99,19 +101,19 @@ public class IRoute {
 
 			horariocomprado = "14:15";
 		}
-		dadosDoComprador();
-		
+		dadosDoComprador(horariocomprado);
+
 		return horariocomprado;
 	}
 
 	private static String gaspar(String horariocomprado) {
 
 		Scanner leitura = new Scanner(System.in);
-		
-		System.out.println(" Blumenau - Gaspar: ");
+
+		System.out.println(" Blumenau - Gaspar: \n");
 		System.out.println(" 1- 14:10, 2- 15:10, 3- 17:00, 4- 17:50, 5- 18:50\n ");
-		
-		System.out.println("Horário escolhido:\n ");
+		System.out.println("O valor fixo da passagem é: R$ 5,50\n");
+		System.out.println("Horário escolhido para compra:\n ");
 		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
 
 		if (horarioescolhido == 1) {
@@ -136,9 +138,9 @@ public class IRoute {
 
 			horariocomprado = "18:50";
 		}
-		
-		dadosDoComprador();
-		
+
+		dadosDoComprador(horariocomprado);
+
 		return horariocomprado;
 
 	}
@@ -146,11 +148,11 @@ public class IRoute {
 	private static String blumenau(String horariocomprado) {
 
 		Scanner leitura = new Scanner(System.in);
-		
-		System.out.println(" Ilhota - Blumenau: ");
+
+		System.out.println(" Ilhota - Blumenau: \n");
 		System.out.println("1- 05:50, 2- 06:10, 3- 06:25, 4- 07:15, 5- 08:55\n ");
-		
-		System.out.println("Horário escolhido:\n ");
+		System.out.println("O valor fixo da passagem é: R$ 5,50\n");
+		System.out.println("Horário escolhido para compra:\n ");
 		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
 
 		if (horarioescolhido == 1) {
@@ -175,41 +177,79 @@ public class IRoute {
 
 			horariocomprado = "08:55";
 		}
-		
-		dadosDoComprador();
-		
+
+		dadosDoComprador(horariocomprado);
+
 		return horariocomprado;
 	}
 
-	private static void dadosDoComprador() {
+	private static void dadosDoComprador(String horariocomprado) {
 
 		Scanner leitura = new Scanner(System.in);
-		
-		System.out.println("---------------------");
-		System.out.println("Dados do Comprador");
-		System.out.println("---------------------");
-		
+
+		System.out.println("---//--------//------//----");
+		System.out.println("Cadastro do Comprador\n");
+
 		System.out.println("Digite seu nome completo:");
 		String nome = leitura.nextLine();
-		
+
 		System.out.println("Digite seu cpf:");
-		//Float cpf = Floatleitura.nextLine();
-		
+		String cpf = leitura.nextLine();
+
 		System.out.println("Digite seu email: ");
-		//String nome = leitura.nextLine();
-		
+		String email = leitura.nextLine();
+
 		System.out.println("Digite seu número de celular: ");
-		//String nome = leitura.nextLine();
-		
+		String numCel = leitura.nextLine();
+
+		Comprador c = new Comprador();
+		c.setName(nome);
+		c.setCpf(cpf);
+		c.setEmail(email);
+		c.setNumCl(numCel);
+		c.setHoraSelec(horariocomprado);
+
+		System.out.println("\nVerifique se os dados estão corretos:\n");
+
+		System.out.println("nome: " + c.getName() + "\ncpf: " + c.getCpf() + "\nEmail: " + c.getEmail());
+
+		System.out.println("Número de telefone:" + c.getNumCl() + "\nHorário Selecionado: " + c.getHoraSelec());
+
+		System.out.println("\nDeseja alterar dados? (Responda com S ou N)\n");
+		String opcaoSelec = leitura.nextLine();
+
+		if (opcaoSelec.equalsIgnoreCase("S")) {
+			dadosDoComprador(horariocomprado);
+			System.out.println("\n");
+		} else if (opcaoSelec.equalsIgnoreCase("N")) {
+
+			System.out.println("Deseja:\n 1- Voltar ao menu secundário\n 2- Gerar pix copia e cola.");
+			Integer opcSel = Integer.valueOf(leitura.nextLine());
+
+			if (opcSel == 1) {
+				menu2();
+			}
+			if (opcSel == 2) {
+				System.out.println("Pix: 4017954759306906");
+				
+				System.out.println("Você será redirecionado para o menu.");
+				menu2();
+			} else if (opcSel > 2) {
+				System.out.println(" Erro! Selecione uma das opções ");
+				dadosDoComprador(horariocomprado);
+
+			}
+		}
+
 	}
-	
+
 	private static void excluirConta() {
 		Scanner leitura = new Scanner(System.in);
 
 		System.out.println("Tem certeza que deseja excluir sua conta? (Sim ou Não): ");
 		String confirm = leitura.nextLine();
 
-		if (confirm.equals("Sim")) {
+		if (confirm.equalsIgnoreCase("Sim")) {
 
 			usuarioCad.remove(usuarioLogado);
 
@@ -217,16 +257,16 @@ public class IRoute {
 			main(null);
 		}
 
-		else if (confirm.equals("Não"))
-			;
-		menu2();
+		else if (confirm.equalsIgnoreCase("Não")) {
+			menu2();
+		}
 
 	}
 
 	public static void menu2() {
 		Scanner leitura = new Scanner(System.in);
 
-		System.out.println("Deseja:\n 1- Alterar sua senha\n 2- Excluir sua conta\n 3- Ver as linhas de ônibus.");
+		System.out.println("Deseja:\n 1- Alterar sua senha\n 2- Excluir sua conta\n 3- Ver as linhas de ônibus\n ");
 		Integer opcaoSelecionada = Integer.valueOf(leitura.nextLine());
 
 		if (opcaoSelecionada == 1) {
@@ -238,18 +278,19 @@ public class IRoute {
 		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 3) {
 
 			System.out.println("Erro! Escolha uma das opções.");
+			menu2();
 		}
-		menu2();
+
 	}
 
 	private static void alterarSenha() {
 
 		Scanner leitura = new Scanner(System.in);
 
-		System.out.println("Deseja alterar sua senha? (Sim ou Não): ");
+		System.out.println("Deseja alterar sua senha? (S ou N): ");
 		String confirm = leitura.nextLine();
 
-		if (confirm.equals("Sim")) {
+		if (confirm.equalsIgnoreCase("S")) {
 
 			System.out.println("Digite sua senha atual: ");
 			String senhaAtual = leitura.nextLine();
@@ -271,7 +312,7 @@ public class IRoute {
 				}
 			}
 
-		} else if (confirm.equals("Não")) {
+		} else if (confirm.equalsIgnoreCase("N")) {
 			menu2();
 		}
 
@@ -319,8 +360,6 @@ public class IRoute {
 
 			if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
 				return usuario;
-			} else {
-				System.out.println("Login não encontrado, realize o cadastro ou revise seus dados.");
 			}
 
 		}
