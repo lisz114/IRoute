@@ -51,13 +51,13 @@ public class IRoute {
 		Integer leituralinha = Integer.valueOf(leitura.nextLine());
 
 		if (leituralinha == 1) {
-			blumenau();
+			blumenau(null);
 		}
 		if (leituralinha == 2) {
-			gaspar();
+			gaspar(null);
 		}
 		if (leituralinha == 3) {
-			ilhota();
+			ilhota(null);
 		}
 
 		else if (leituralinha > 3) {
@@ -67,18 +67,142 @@ public class IRoute {
 		return leituralinha;
 	}
 
-	private static void ilhota() {
+	private static String ilhota(String horariocomprado) {
+
+		Scanner leitura = new Scanner(System.in);
+		
+		System.out.println(" Blumenau - Ilhota: ");
+		System.out.println("1- 07:15, 2- 08:45, 3- 10:30, 4- 12:30, 5- 14:15\n ");
+
+		System.out.println("Horário escolhido:\n ");
+		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+
+		if (horarioescolhido == 1) {
+
+			horariocomprado = "07:15";
+		}
+		if (horarioescolhido == 2) {
+
+			horariocomprado = "08:45";
+		}
+		if (horarioescolhido == 3) {
+
+			horariocomprado = "10:30";
+
+		}
+		if (horarioescolhido == 4) {
+
+			horariocomprado = "12:30";
+
+		}
+		if (horarioescolhido == 5) {
+
+			horariocomprado = "14:15";
+		}
+		dadosDoComprador();
+		
+		return horariocomprado;
+	}
+
+	private static String gaspar(String horariocomprado) {
+
+		Scanner leitura = new Scanner(System.in);
+		
+		System.out.println(" Blumenau - Gaspar: ");
+		System.out.println(" 1- 14:10, 2- 15:10, 3- 17:00, 4- 17:50, 5- 18:50\n ");
+		
+		System.out.println("Horário escolhido:\n ");
+		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+
+		if (horarioescolhido == 1) {
+
+			horariocomprado = "14:10";
+		}
+		if (horarioescolhido == 2) {
+
+			horariocomprado = "15:10";
+		}
+		if (horarioescolhido == 3) {
+
+			horariocomprado = "17:00";
+
+		}
+		if (horarioescolhido == 4) {
+
+			horariocomprado = "17:50";
+
+		}
+		if (horarioescolhido == 5) {
+
+			horariocomprado = "18:50";
+		}
+		
+		dadosDoComprador();
+		
+		return horariocomprado;
 
 	}
 
-	private static void gaspar() {
+	private static String blumenau(String horariocomprado) {
 
+		Scanner leitura = new Scanner(System.in);
+		
+		System.out.println(" Ilhota - Blumenau: ");
+		System.out.println("1- 05:50, 2- 06:10, 3- 06:25, 4- 07:15, 5- 08:55\n ");
+		
+		System.out.println("Horário escolhido:\n ");
+		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+
+		if (horarioescolhido == 1) {
+
+			horariocomprado = "05:50";
+		}
+		if (horarioescolhido == 2) {
+
+			horariocomprado = "06:10";
+		}
+		if (horarioescolhido == 3) {
+
+			horariocomprado = "06:25";
+
+		}
+		if (horarioescolhido == 4) {
+
+			horariocomprado = "07:15";
+
+		}
+		if (horarioescolhido == 5) {
+
+			horariocomprado = "08:55";
+		}
+		
+		dadosDoComprador();
+		
+		return horariocomprado;
 	}
 
-	private static void blumenau() {
+	private static void dadosDoComprador() {
 
+		Scanner leitura = new Scanner(System.in);
+		
+		System.out.println("---------------------");
+		System.out.println("Dados do Comprador");
+		System.out.println("---------------------");
+		
+		System.out.println("Digite seu nome completo:");
+		String nome = leitura.nextLine();
+		
+		System.out.println("Digite seu cpf:");
+		//Float cpf = Floatleitura.nextLine();
+		
+		System.out.println("Digite seu email: ");
+		//String nome = leitura.nextLine();
+		
+		System.out.println("Digite seu número de celular: ");
+		//String nome = leitura.nextLine();
+		
 	}
-
+	
 	private static void excluirConta() {
 		Scanner leitura = new Scanner(System.in);
 
