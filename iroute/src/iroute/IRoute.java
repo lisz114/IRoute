@@ -35,7 +35,7 @@ public class IRoute {
 				break;
 			}
 			}
-		} 
+		}
 	}
 
 	private static Integer exibirlinhas() {
@@ -215,29 +215,43 @@ public class IRoute {
 
 		System.out.println("Número de telefone:" + c.getNumCl() + "\nHorário Selecionado: " + c.getHoraSelec());
 
-		System.out.println("\nDeseja alterar dados? (Responda com S ou N)\n");
+		System.out.println("\nDeseja alterar dados? (Responda com Sim ou Nao)");
 		String opcaoSelec = leitura.nextLine();
 
-		if (opcaoSelec.equalsIgnoreCase("S")) {
+		if (opcaoSelec.equalsIgnoreCase("Sim")) {
 			dadosDoComprador(horariocomprado);
 			System.out.println("\n");
-		} else if (opcaoSelec.equalsIgnoreCase("N")) {
+		} else if (opcaoSelec.equalsIgnoreCase("Nao")) {
 
-			System.out.println("Deseja:\n 1- Voltar ao menu secundário\n 2- Gerar pix copia e cola.");
+			System.out.println("\nDeseja:\n 1- Voltar ao menu secundário\n 2- Gerar pix copia e cola.");
 			Integer opcSel = Integer.valueOf(leitura.nextLine());
 
 			if (opcSel == 1) {
 				menu2();
 			}
 			if (opcSel == 2) {
-				System.out.println("Pix: 4017954759306906");
-				
-				System.out.println("Você será redirecionado para o menu.");
-				menu2();
-			} else if (opcSel > 2) {
-				System.out.println(" Erro! Selecione uma das opções ");
-				dadosDoComprador(horariocomprado);
 
+				System.out.println("\nApós gerar o pix você será redirecionado para o menu novamente. Deseja continuar? (S ou N)-----\n");
+
+				String confirm = leitura.nextLine();
+
+				if (confirm.equalsIgnoreCase("s")) {
+
+					System.out.println("\nPix: 4017954759306906\n");
+
+					menu2();
+
+				} else if (confirm.equalsIgnoreCase("n")) {
+
+					menu2();
+	
+				}
+
+			} else if (opcSel > 2) {
+				
+				System.out.println(" Erro! Selecione uma das opções ");
+				
+				dadosDoComprador(horariocomprado);
 			}
 		}
 
@@ -246,7 +260,7 @@ public class IRoute {
 	private static void excluirConta() {
 		Scanner leitura = new Scanner(System.in);
 
-		System.out.println("Tem certeza que deseja excluir sua conta? (Sim ou Não): ");
+		System.out.println("Tem certeza que deseja excluir sua conta? (Sim ou Nao): ");
 		String confirm = leitura.nextLine();
 
 		if (confirm.equalsIgnoreCase("Sim")) {
@@ -257,7 +271,7 @@ public class IRoute {
 			main(null);
 		}
 
-		else if (confirm.equalsIgnoreCase("Não")) {
+		else if (confirm.equalsIgnoreCase("Nao")) {
 			menu2();
 		}
 
@@ -287,10 +301,10 @@ public class IRoute {
 
 		Scanner leitura = new Scanner(System.in);
 
-		System.out.println("Deseja alterar sua senha? (S ou N): ");
+		System.out.println("Deseja alterar sua senha? (Sim ou Nao): ");
 		String confirm = leitura.nextLine();
 
-		if (confirm.equalsIgnoreCase("S")) {
+		if (confirm.equalsIgnoreCase("Sim")) {
 
 			System.out.println("Digite sua senha atual: ");
 			String senhaAtual = leitura.nextLine();
@@ -312,7 +326,7 @@ public class IRoute {
 				}
 			}
 
-		} else if (confirm.equalsIgnoreCase("N")) {
+		} else if (confirm.equalsIgnoreCase("Nao")) {
 			menu2();
 		}
 
