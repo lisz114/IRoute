@@ -38,7 +38,7 @@ public class IRoute {
 		}
 	}
 
-	private static Integer exibirlinhas() {
+	public ArrayList<Usuario> exibirlinhas(String[] blumenau, String[] gaspar, String[] ilhota) {
 
 		Scanner leitura = new Scanner(System.in);
 
@@ -50,13 +50,45 @@ public class IRoute {
 		Integer leituralinha = Integer.valueOf(leitura.nextLine());
 
 		if (leituralinha == 1) {
-			blumenau(null);
+
+			blumenau[0] = "1- 07:15\n";
+			blumenau[1] = "2- 08:45\n";
+			blumenau[2] = "3- 10:30\n";
+			blumenau[3] = "4- 12:30\n";
+			blumenau[4] = "5- 14:15\n";
+
+			System.out.println("\nIlhota - Blumenau\n ");
+			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
+			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
+			System.out.println("Horário escolhido para compra:");
+			Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+
 		}
 		if (leituralinha == 2) {
-			gaspar(null);
+			gaspar[0] = "1- 07:15\n";
+			gaspar[1] = "2- 08:45\n";
+			gaspar[2] = "3- 10:30\n";
+			gaspar[3] = "4- 12:30\n";
+			gaspar[4] = "5- 14:15\n";
+			
+			System.out.println("\nBlumenau - Gaspar:\n ");
+			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
+			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
+			System.out.println("Horário escolhido para compra:");
+			Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
 		}
 		if (leituralinha == 3) {
-			ilhota(null);
+			ilhota[0] = "1- 07:15\n";
+			ilhota[1] = "2- 08:45\n";
+			ilhota[2] = "3- 10:30\n";
+			ilhota[3] = "4- 12:30\n";
+			ilhota[4] = "5- 14:15\n";
+			
+			System.out.println("\nBlumenau - Ilhota:\n ");
+			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
+			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
+			System.out.println("Horário escolhido para compra:");
+			Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
 		}
 		if (leituralinha == 4) {
 			menu2();
@@ -64,124 +96,12 @@ public class IRoute {
 
 		else if (leituralinha > 4) {
 			System.out.println("Erro! Escolha uma das opções");
-			exibirlinhas();
+
 		}
-		return leituralinha;
+		return exibirlinhas(blumenau, gaspar, ilhota);
 	}
 
-	private static String ilhota(String horariocomprado) {
 
-		Scanner leitura = new Scanner(System.in);
-
-		System.out.println(" Blumenau - Ilhota:\n ");
-		System.out.println("1- 07:15, 2- 08:45, 3- 10:30, 4- 12:30, 5- 14:15\n ");
-		System.out.println("O valor fixo da passagem é: R$ 5,50\n");
-		System.out.println("Horário escolhido para compra:");
-		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
-
-		if (horarioescolhido == 1) {
-
-			horariocomprado = "07:15";
-		}
-		if (horarioescolhido == 2) {
-
-			horariocomprado = "08:45";
-		}
-		if (horarioescolhido == 3) {
-
-			horariocomprado = "10:30";
-
-		}
-		if (horarioescolhido == 4) {
-
-			horariocomprado = "12:30";
-
-		}
-		if (horarioescolhido == 5) {
-
-			horariocomprado = "14:15";
-		}
-		dadosDoComprador(horariocomprado);
-
-		return horariocomprado;
-	}
-
-	private static String gaspar(String horariocomprado) {
-
-		Scanner leitura = new Scanner(System.in);
-
-		System.out.println(" Blumenau - Gaspar: \n");
-		System.out.println(" 1- 14:10, 2- 15:10, 3- 17:00, 4- 17:50, 5- 18:50\n ");
-		System.out.println("O valor fixo da passagem é: R$ 5,50\n");
-		System.out.println("Horário escolhido para compra:\n ");
-		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
-
-		if (horarioescolhido == 1) {
-
-			horariocomprado = "14:10";
-		}
-		if (horarioescolhido == 2) {
-
-			horariocomprado = "15:10";
-		}
-		if (horarioescolhido == 3) {
-
-			horariocomprado = "17:00";
-
-		}
-		if (horarioescolhido == 4) {
-
-			horariocomprado = "17:50";
-
-		}
-		if (horarioescolhido == 5) {
-
-			horariocomprado = "18:50";
-		}
-
-		dadosDoComprador(horariocomprado);
-
-		return horariocomprado;
-
-	}
-
-	private static String blumenau(String horariocomprado) {
-
-		Scanner leitura = new Scanner(System.in);
-
-		System.out.println(" Ilhota - Blumenau: \n");
-		System.out.println("1- 05:50, 2- 06:10, 3- 06:25, 4- 07:15, 5- 08:55\n ");
-		System.out.println("O valor fixo da passagem é: R$ 5,50\n");
-		System.out.println("Horário escolhido para compra:\n ");
-		Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
-
-		if (horarioescolhido == 1) {
-
-			horariocomprado = "05:50";
-		}
-		if (horarioescolhido == 2) {
-
-			horariocomprado = "06:10";
-		}
-		if (horarioescolhido == 3) {
-
-			horariocomprado = "06:25";
-
-		}
-		if (horarioescolhido == 4) {
-
-			horariocomprado = "07:15";
-
-		}
-		if (horarioescolhido == 5) {
-
-			horariocomprado = "08:55";
-		}
-
-		dadosDoComprador(horariocomprado);
-
-		return horariocomprado;
-	}
 
 	private static void dadosDoComprador(String horariocomprado) {
 
@@ -231,7 +151,8 @@ public class IRoute {
 			}
 			if (opcSel == 2) {
 
-				System.out.println("\nApós gerar o pix você será redirecionado para o menu novamente. Deseja continuar? (S ou N)-----\n");
+				System.out.println(
+						"\nApós gerar o pix você será redirecionado para o menu novamente. Deseja continuar? (S ou N)-----\n");
 
 				String confirm = leitura.nextLine();
 
@@ -244,13 +165,13 @@ public class IRoute {
 				} else if (confirm.equalsIgnoreCase("n")) {
 
 					menu2();
-	
+
 				}
 
 			} else if (opcSel > 2) {
-				
+
 				System.out.println(" Erro! Selecione uma das opções ");
-				
+
 				dadosDoComprador(horariocomprado);
 			}
 		}
