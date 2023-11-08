@@ -22,13 +22,13 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	private Float numeroCartao;
+	private int numeroCartao;
 
-	public Float getNumeroCartao() {
+	public int getNumeroCartao() {
 		return numeroCartao;
 	}
 
-	public void setNumeroCartao(Float numeroCartao) {
+	public void setNumeroCartao(int numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 }

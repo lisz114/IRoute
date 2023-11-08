@@ -9,21 +9,6 @@ public class UsuarioDAO implements IUsuarioDAO {
 
 	private static ArrayList<Usuario> usuarioCad = new ArrayList<>();
 
-	public Usuario login(String senha, String usuario) {
-		
-		for (Usuario usuario : usuarioCad) {
-			if (usuario.getNome().equals(login)) {
-				
-			}
-		}
-		
-		
-		return usuario;
-		
-		
-		
-	}
-	
 	public boolean criar(Usuario p) {
 		if (p != null) {
 			usuarioCad.add(p);
@@ -32,20 +17,29 @@ public class UsuarioDAO implements IUsuarioDAO {
 		return false;
 	}
 
-	@Override
-	public boolean alterar(Usuario p, long cpf) {
-		// TODO Auto-generated method stub
+	public boolean alterar(Usuario p, int numeroCartao) {
+		for (Usuario usuario : usuarioCad) {
+			if (usuario.getNumeroCartao() == numeroCartao) {
+				usuario.setSenha(p.getSenha());
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
-	public boolean excluir(Usuario p, long cpf) {
-		// TODO Auto-generated method stub
+	public boolean excluir(Usuario p, int numeroCartao) {
+		for (Usuario usuario : usuarioCad) {
+			if (usuario.getNumeroCartao() == numeroCartao) {
+				usuarioCad.remove(usuario);
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
-	public ArrayList<Usuario> exibirlinhas() {
+	public ArrayList<Usuario> usuariolog() {
 		return usuarioCad;
 	}
 

@@ -43,10 +43,13 @@ public class IrouteMain {
 		}
 	}
 
-	public ArrayList<Usuario> exibirlinhas(String[] blumenau, String[] gaspar, String[] ilhota) {
+	public static ArrayList<Usuario> exibirlinhas() {
 
 		Scanner leitura = new Scanner(System.in);
-
+		String[] blumenau = new String[5];
+		String[] gaspar = new String[5];
+		String[] ilhota = new String[5];
+		
 		System.out.println("- EXIBIR AS LINHAS PARA: -");
 		System.out.println("1 - Blumenau ");
 		System.out.println("2 - Gaspar ");
@@ -103,7 +106,7 @@ public class IrouteMain {
 			System.out.println("Erro! Escolha uma das opções");
 
 		}
-		return exibirlinhas(blumenau, gaspar, ilhota);
+		return exibirlinhas();
 	}
 
 
@@ -218,7 +221,7 @@ public class IrouteMain {
 		} else if (opcaoSelecionada == 2) {
 			excluirConta();
 		} else if (opcaoSelecionada == 3) {
-			exibirlinhas();
+		exibirlinhas();
 		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 3) {
 
 			System.out.println("Erro! Escolha uma das opções.");
@@ -240,7 +243,7 @@ public class IrouteMain {
 			String senhaAtual = leitura.nextLine();
 
 			for (Usuario usuario : usuarioCad) {
-
+				
 				if (usuario.getSenha().equals(senhaAtual)) {
 
 					System.out.println("Digite a nova senha: ");
@@ -256,6 +259,10 @@ public class IrouteMain {
 				}
 			}
 
+			
+			
+			
+			
 		} else if (confirm.equalsIgnoreCase("Nao")) {
 			menu2();
 		}
@@ -279,7 +286,7 @@ public class IrouteMain {
 		Scanner leitura = new Scanner(System.in);
 
 		System.out.println("Digite o número do seu Cartão: ");
-		Float cartao = Float.valueOf(leitura.nextLine());
+		Integer cartao = Integer.valueOf(leitura.nextLine());
 		System.out.println("Crie um nome de Usuário: ");
 		String nome = leitura.nextLine();
 		System.out.println("Crie uma senha: ");
@@ -300,8 +307,10 @@ public class IrouteMain {
 		String nome = leitura.nextLine();
 		System.out.println("Digite a senha: ");
 		String senha = leitura.nextLine();
-
-		for (Usuario usuario : usuarioCad) {
+		
+		
+		UsuarioDAO dao = new UsuarioDAO();
+		for (Usuario usuario : dao.usuariolog()) {
 
 			if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
 				return usuario;

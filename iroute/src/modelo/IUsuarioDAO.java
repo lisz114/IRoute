@@ -7,12 +7,12 @@ public interface IUsuarioDAO {
 	public boolean criar(Usuario p);
 
 	
-	public boolean alterar(Usuario p, long cpf);
+	public boolean alterar(Usuario p, int numeroCartao);
 
 	
-	public boolean excluir(Usuario p, long cpf);
+	public boolean excluir(Usuario p, int numeroCartao);
 
 	
-	public ArrayList<Usuario>exibirlinhas();
+	public ArrayList<Usuario>usuariolog();
 	
 }
