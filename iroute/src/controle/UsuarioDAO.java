@@ -2,14 +2,28 @@ package controle;
 
 import java.util.ArrayList;
 
-import iroute.IUsuarioDAO;
-import iroute.Usuario;
+import modelo.IUsuarioDAO;
+import modelo.Usuario;
 
 public class UsuarioDAO implements IUsuarioDAO {
 
 	private static ArrayList<Usuario> usuarioCad = new ArrayList<>();
 
-	@Override
+	public Usuario login(String senha, String usuario) {
+		
+		for (Usuario usuario : usuarioCad) {
+			if (usuario.getNome().equals(login)) {
+				
+			}
+		}
+		
+		
+		return usuario;
+		
+		
+		
+	}
+	
 	public boolean criar(Usuario p) {
 		if (p != null) {
 			usuarioCad.add(p);

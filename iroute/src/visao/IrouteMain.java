@@ -1,9 +1,14 @@
-package iroute;
+package visao;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class IRoute {
+import controle.UsuarioDAO;
+import modelo.Comprador;
+import modelo.IUsuarioDAO;
+import modelo.Usuario;
+
+public class IrouteMain {
 
 	private static ArrayList<Usuario> usuarioCad = new ArrayList<>();
 	private static Usuario usuarioLogado;
@@ -128,7 +133,10 @@ public class IRoute {
 		c.setEmail(email);
 		c.setNumCl(numCel);
 		c.setHoraSelec(horariocomprado);
-
+		
+		UsuarioDAO dao = new UsuarioDAO();
+		dao.criar(usuarioLogado);
+		
 		System.out.println("\nVerifique se os dados estão corretos:\n");
 
 		System.out.println("nome: " + c.getName() + "\ncpf: " + c.getCpf() + "\nEmail: " + c.getEmail());
@@ -186,7 +194,8 @@ public class IRoute {
 
 		if (confirm.equalsIgnoreCase("Sim")) {
 
-			usuarioCad.remove(usuarioLogado);
+			UsuarioDAO dao = new UsuarioDAO();
+			dao.excluir(usuarioLogado, 0);
 
 			System.out.println("Conta excluida com sucesso! ");
 			main(null);
@@ -280,8 +289,9 @@ public class IRoute {
 		p.setNumeroCartao(cartao);
 		p.setNome(nome);
 		p.setSenha(senha);
-		usuarioCad.add(p);
-
+		
+		UsuarioDAO dao = new UsuarioDAO();
+		dao.criar(p);
 	}
 
 	private static Usuario login() {
