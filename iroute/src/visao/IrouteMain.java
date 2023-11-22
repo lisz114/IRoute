@@ -10,10 +10,10 @@ import modelo.Usuario;
 
 public class IrouteMain {
 
-	private static ArrayList<Usuario> usuarioCad = new ArrayList<>();
 	private static Usuario usuarioLogado;
 
 	public static void main(String[] args) {
+
 		Scanner leitura = new Scanner(System.in);
 
 		Integer opcaoSelecionada = Integer.MAX_VALUE;
@@ -49,7 +49,7 @@ public class IrouteMain {
 		String[] blumenau = new String[5];
 		String[] gaspar = new String[5];
 		String[] ilhota = new String[5];
-		
+
 		System.out.println("- EXIBIR AS LINHAS PARA: -");
 		System.out.println("1 - Blumenau ");
 		System.out.println("2 - Gaspar ");
@@ -78,7 +78,7 @@ public class IrouteMain {
 			gaspar[2] = "3- 10:30\n";
 			gaspar[3] = "4- 12:30\n";
 			gaspar[4] = "5- 14:15\n";
-			
+
 			System.out.println("\nBlumenau - Gaspar:\n ");
 			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
 			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
@@ -91,7 +91,7 @@ public class IrouteMain {
 			ilhota[2] = "3- 10:30\n";
 			ilhota[3] = "4- 12:30\n";
 			ilhota[4] = "5- 14:15\n";
-			
+
 			System.out.println("\nBlumenau - Ilhota:\n ");
 			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
 			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
@@ -108,8 +108,6 @@ public class IrouteMain {
 		}
 		return exibirlinhas();
 	}
-
-
 
 	private static void dadosDoComprador(String horariocomprado) {
 
@@ -136,10 +134,10 @@ public class IrouteMain {
 		c.setEmail(email);
 		c.setNumCl(numCel);
 		c.setHoraSelec(horariocomprado);
-		
-		UsuarioDAO dao = new UsuarioDAO();
+
+		UsuarioDAO dao = UsuarioDAO.criaInstancia();
 		dao.criar(usuarioLogado);
-		
+
 		System.out.println("\nVerifique se os dados estão corretos:\n");
 
 		System.out.println("nome: " + c.getName() + "\ncpf: " + c.getCpf() + "\nEmail: " + c.getEmail());
@@ -197,7 +195,7 @@ public class IrouteMain {
 
 		if (confirm.equalsIgnoreCase("Sim")) {
 
-			UsuarioDAO dao = new UsuarioDAO();
+			UsuarioDAO dao = UsuarioDAO.criaInstancia();
 			dao.excluir(usuarioLogado, 0);
 
 			System.out.println("Conta excluida com sucesso! ");
@@ -221,7 +219,7 @@ public class IrouteMain {
 		} else if (opcaoSelecionada == 2) {
 			excluirConta();
 		} else if (opcaoSelecionada == 3) {
-		exibirlinhas();
+			exibirlinhas();
 		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 3) {
 
 			System.out.println("Erro! Escolha uma das opções.");
@@ -242,8 +240,9 @@ public class IrouteMain {
 			System.out.println("Digite sua senha atual: ");
 			String senhaAtual = leitura.nextLine();
 
-			for (Usuario usuario : usuarioCad) {
-				
+			UsuarioDAO dao = UsuarioDAO.criaInstancia();
+			for (Usuario usuario : dao.listar()) {
+
 				if (usuario.getSenha().equals(senhaAtual)) {
 
 					System.out.println("Digite a nova senha: ");
@@ -259,10 +258,6 @@ public class IrouteMain {
 				}
 			}
 
-			
-			
-			
-			
 		} else if (confirm.equalsIgnoreCase("Nao")) {
 			menu2();
 		}
@@ -296,8 +291,8 @@ public class IrouteMain {
 		p.setNumeroCartao(cartao);
 		p.setNome(nome);
 		p.setSenha(senha);
-		
-		UsuarioDAO dao = new UsuarioDAO();
+
+		UsuarioDAO dao = UsuarioDAO.criaInstancia();
 		dao.criar(p);
 	}
 
@@ -307,15 +302,12 @@ public class IrouteMain {
 		String nome = leitura.nextLine();
 		System.out.println("Digite a senha: ");
 		String senha = leitura.nextLine();
-		
-		
-		UsuarioDAO dao = new UsuarioDAO();
-		for (Usuario usuario : dao.usuariolog()) {
 
+		UsuarioDAO dao = UsuarioDAO.criaInstancia();
+		for (Usuario usuario : dao.listar()) {
 			if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
 				return usuario;
 			}
-
 		}
 		return null;
 	}
