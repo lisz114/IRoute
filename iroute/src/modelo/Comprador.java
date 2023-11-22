@@ -6,7 +6,7 @@ public class Comprador {
 	private String email;
 	private String cpf;
 	private String numCl;
-	private String horaSelec;
+	private Integer horaSelec;
 	
 	public String getEmail() {
 		return email;
@@ -32,10 +32,10 @@ public class Comprador {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getHoraSelec() {
+	public Integer getHoraSelec() {
 		return horaSelec;
 	}
-	public void setHoraSelec(String horaSelec) {
+	public void setHoraSelec(Integer horaSelec) {
 		this.horaSelec = horaSelec;
 	}
 	

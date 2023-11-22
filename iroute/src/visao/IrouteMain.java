@@ -70,6 +70,7 @@ public class IrouteMain {
 			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
 			System.out.println("Horário escolhido para compra:");
 			Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+			dadosDoComprador(horarioescolhido);
 
 		}
 		if (leituralinha == 2) {
@@ -80,10 +81,11 @@ public class IrouteMain {
 			gaspar[4] = "5- 14:15\n";
 
 			System.out.println("\nBlumenau - Gaspar:\n ");
-			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
+			System.out.println(gaspar[0] + gaspar[1] + gaspar[2] + gaspar[3] + gaspar[4]);
 			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
 			System.out.println("Horário escolhido para compra:");
 			Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+			dadosDoComprador(horarioescolhido);
 		}
 		if (leituralinha == 3) {
 			ilhota[0] = "1- 07:15\n";
@@ -93,23 +95,25 @@ public class IrouteMain {
 			ilhota[4] = "5- 14:15\n";
 
 			System.out.println("\nBlumenau - Ilhota:\n ");
-			System.out.println(blumenau[0] + blumenau[1] + blumenau[2] + blumenau[3] + blumenau[4]);
+			System.out.println(ilhota[0] + ilhota[1] + ilhota[2] + ilhota[3] + ilhota[4]);
 			System.out.println("O valor fixo da passagem é: R$ 5,50\n");
 			System.out.println("Horário escolhido para compra:");
 			Integer horarioescolhido = Integer.valueOf(leitura.nextLine());
+			dadosDoComprador(horarioescolhido);
 		}
 		if (leituralinha == 4) {
 			menu2();
 		}
 
-		else if (leituralinha > 4) {
+		else if (leituralinha > 4 && leituralinha < 1) {
 			System.out.println("Erro! Escolha uma das opções");
 
+			return exibirlinhas();
 		}
-		return exibirlinhas();
+		return null;
 	}
 
-	private static void dadosDoComprador(String horariocomprado) {
+	private static void dadosDoComprador(Integer horariocomprado) {
 
 		Scanner leitura = new Scanner(System.in);
 
@@ -160,31 +164,28 @@ public class IrouteMain {
 			}
 			if (opcSel == 2) {
 
-				System.out.println(
-						"\nApós gerar o pix você será redirecionado para o menu novamente. Deseja continuar? (S ou N)-----\n");
+				System.out.println("\nPix: 4017954759306906\n");
+				System.out.println("\n---------------------\n");
+				System.out.println("Deseja:\n 1- Voltar ao menu secundário\n 2- Sair do Sistema\n");
+				Integer voltarOuSair = Integer.valueOf(leitura.nextLine());
 
-				String confirm = leitura.nextLine();
-
-				if (confirm.equalsIgnoreCase("s")) {
-
-					System.out.println("\nPix: 4017954759306906\n");
+				if (voltarOuSair == 1) {
 
 					menu2();
-
-				} else if (confirm.equalsIgnoreCase("n")) {
-
-					menu2();
-
+					
+				}else if (voltarOuSair == 2) {
+					
+					sair();
+					
 				}
-
-			} else if (opcSel > 2) {
+			}
+			if (opcSel > 2) {
 
 				System.out.println(" Erro! Selecione uma das opções ");
 
 				dadosDoComprador(horariocomprado);
 			}
-		}
-
+		}	
 	}
 
 	private static void excluirConta() {
@@ -208,10 +209,18 @@ public class IrouteMain {
 
 	}
 
+	public static void sair() {
+
+		System.out.println("Obrigado por testar nosso sistema, Volte sempre =)\n \nSaindo do Sistema... ");
+		System.exit(0);
+
+	}
+
 	public static void menu2() {
 		Scanner leitura = new Scanner(System.in);
 
-		System.out.println("Deseja:\n 1- Alterar sua senha\n 2- Excluir sua conta\n 3- Ver as linhas de ônibus\n ");
+		System.out.println(
+				"Deseja:\n 1- Alterar sua senha\n 2- Excluir sua conta\n 3- Ver as linhas de ônibus\n 4- Sair do Sistema\n");
 		Integer opcaoSelecionada = Integer.valueOf(leitura.nextLine());
 
 		if (opcaoSelecionada == 1) {
@@ -220,7 +229,9 @@ public class IrouteMain {
 			excluirConta();
 		} else if (opcaoSelecionada == 3) {
 			exibirlinhas();
-		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 3) {
+		} else if (opcaoSelecionada == 4) {
+			sair();
+		} else if (opcaoSelecionada < 1 && opcaoSelecionada > 4) {
 
 			System.out.println("Erro! Escolha uma das opções.");
 			menu2();
