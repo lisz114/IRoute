@@ -11,6 +11,7 @@ import modelo.Usuario;
 public class IrouteMain {
 
 	private static Usuario usuarioLogado;
+	public static UsuarioDAO dao = UsuarioDAO.criaInstancia();
 
 	public static void main(String[] args) {
 
@@ -139,7 +140,6 @@ public class IrouteMain {
 		c.setNumCl(numCel);
 		c.setHoraSelec(horariocomprado);
 
-		UsuarioDAO dao = UsuarioDAO.criaInstancia();
 		dao.criar(usuarioLogado);
 
 		System.out.println("\nVerifique se os dados estão corretos:\n");
@@ -172,11 +172,11 @@ public class IrouteMain {
 				if (voltarOuSair == 1) {
 
 					menu2();
-					
-				}else if (voltarOuSair == 2) {
-					
+
+				} else if (voltarOuSair == 2) {
+
 					sair();
-					
+
 				}
 			}
 			if (opcSel > 2) {
@@ -185,7 +185,7 @@ public class IrouteMain {
 
 				dadosDoComprador(horariocomprado);
 			}
-		}	
+		}
 	}
 
 	private static void excluirConta() {
@@ -196,11 +196,17 @@ public class IrouteMain {
 
 		if (confirm.equalsIgnoreCase("Sim")) {
 
-			UsuarioDAO dao = UsuarioDAO.criaInstancia();
-			dao.excluir(usuarioLogado, 0);
+			System.out.println("Digite o numero do seu cartao!");
+			int numeroCartao = leitura.nextInt();
+			
+			if (dao.excluir(usuarioLogado, numeroCartao) == false) {
+				System.out.println("numero dom cartao nao encontrado!");
+				menu2();
+			} else {
 
-			System.out.println("Conta excluida com sucesso! ");
-			main(null);
+				System.out.println("Conta excluida com sucesso! ");
+				main(null);
+			}
 		}
 
 		else if (confirm.equalsIgnoreCase("Nao")) {
@@ -250,18 +256,21 @@ public class IrouteMain {
 
 			System.out.println("Digite sua senha atual: ");
 			String senhaAtual = leitura.nextLine();
+			
+			System.out.println("Digite seu nome de uruario atual: ");
+			String nomeAtual = leitura.nextLine();
 
-			UsuarioDAO dao = UsuarioDAO.criaInstancia();
 			for (Usuario usuario : dao.listar()) {
 
-				if (usuario.getSenha().equals(senhaAtual)) {
+				if (usuario.getSenha().equals(senhaAtual)&&usuario.getNome().equals(nomeAtual)) {
 
 					System.out.println("Digite a nova senha: ");
 					String novaSenha = leitura.nextLine();
 
-					usuario.setSenha(novaSenha);
+					dao.alterar(usuarioLogado, novaSenha);
 
 					System.out.println("Senha alterada com sucesso!");
+					break;
 
 				} else {
 					System.out.println("Senha incorreta, tente novamente.");
@@ -303,7 +312,6 @@ public class IrouteMain {
 		p.setNome(nome);
 		p.setSenha(senha);
 
-		UsuarioDAO dao = UsuarioDAO.criaInstancia();
 		dao.criar(p);
 	}
 
@@ -314,7 +322,6 @@ public class IrouteMain {
 		System.out.println("Digite a senha: ");
 		String senha = leitura.nextLine();
 
-		UsuarioDAO dao = UsuarioDAO.criaInstancia();
 		for (Usuario usuario : dao.listar()) {
 			if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
 				return usuario;

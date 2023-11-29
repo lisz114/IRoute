@@ -34,14 +34,10 @@ public class UsuarioDAO implements IUsuarioDAO {
 		return false;
 	}
 
-	public boolean alterar(Usuario p, int numeroCartao) {
-		for (Usuario usuario : usuarioCad) {
-			if (usuario.getNumeroCartao() == numeroCartao) {
-				usuario.setSenha(p.getSenha());
-				return true;
-			}
-		}
-		return false;
+	public boolean alterar(Usuario p, String novSenha) {
+		p.setSenha(novSenha);		
+		return true;
+		
 	}
 
 	@Override
