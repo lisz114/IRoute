@@ -200,7 +200,7 @@ public class IrouteMain {
 			int numeroCartao = leitura.nextInt();
 			
 			if (dao.excluir(usuarioLogado, numeroCartao) == false) {
-				System.out.println("numero dom cartao nao encontrado!");
+				System.out.println("numero do cartao nao encontrado!");
 				menu2();
 			} else {
 
@@ -257,7 +257,7 @@ public class IrouteMain {
 			System.out.println("Digite sua senha atual: ");
 			String senhaAtual = leitura.nextLine();
 			
-			System.out.println("Digite seu nome de uruario atual: ");
+			System.out.println("Digite seu nome de usuário atual: ");
 			String nomeAtual = leitura.nextLine();
 
 			for (Usuario usuario : dao.listar()) {
